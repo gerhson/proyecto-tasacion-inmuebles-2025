@@ -1,4 +1,4 @@
-const data = {
+const DATA = {
   // === LIMA TOP (Distritos Premium) ===
   "San Isidro": {
     type: ["Departamento", "Casa", "Terreno"],
@@ -680,4 +680,5 @@ document.addEventListener("DOMContentLoaded", () => {
     calcular(); // función calcular que ya tenías
   });
 });
+
 
