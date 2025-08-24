@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Tasación Inmobiliaria</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 🔒 Login simple -->
+  <div id="gate">
+    <h2>Acceso a la Calculadora</h2>
+    <input id="clave" type="password" placeholder="Ingresa tu clave">
+    <button id="btnLogin">Ingresar</button>
+    <p id="gateMsg"></p>
+  </div>
+
+  <!-- 🔢 Calculadora -->
+  <div id="app" style="display:none;">
+    <h1>Calculadora de Tasación Inmobiliaria</h1>
+    <form id="calc">
+      <label>Distrito:</label>
+      <select id="distrito"></select>
+
+      <label>Zona:</label>
+      <select id="zona"></select>
+
+      <label>Tipo de inmueble:</label>
+      <select id="tipo">
+        <option value="">Selecciona tipo</option>
+        <option value="departamento">Departamento</option>
+        <option value="casa">Casa</option>
+        <option value="terreno">Terreno</option>
+        <option value="oficina">Oficina</option>
+        <option value="local">Local</option>
+      </select>
+
+      <label>Área construida (m²):</label>
+      <input type="number" id="areaConstruida">
+
+      <label>Área libre (m²):</label>
+      <input type="number" id="areaLibre">
+
+      <label>Área de terreno (m²):</label>
+      <input type="number" id="areaTerreno">
+
+      <label>Dormitorios:</label>
+      <input type="number" id="dorms">
+
+      <label>Baños:</label>
+      <input type="number" id="baths">
+
+      <label>Piso:</label>
+      <input type="number" id="piso">
+
+      <label>Ascensor:</label>
+      <select id="ascensor">
+        <option value="sin">Sin</option>
+        <option value="con">Con</option>
+      </select>
+
+      <label>Antigüedad (años):</label>
+      <input type="number" id="antiguedad">
+
+      <label>Eficiencia energética:</label>
+      <select id="eficienciaEnergetica">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+      </select>
+
+      <label>Estado de conservación:</label>
+      <select id="estadoConservacion">
+        <option value="excelente">Excelente</option>
+        <option value="bueno">Bueno</option>
+        <option value="regular">Regular</option>
+        <option value="remodelar">Remodelar</option>
+      </select>
+
+      <label>Moneda:</label>
+      <select id="currency">
+        <option value="PEN">S/</option>
+        <option value="USD">USD</option>
+      </select>
+
+      <button type="submit">Calcular</button>
+    </form>
+
+    <h2 id="summary"></h2>
+    <p id="valMin"></p>
+    <p id="valMed"></p>
+    <p id="valMax"></p>
+
+    <button id="logout">Salir</button>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

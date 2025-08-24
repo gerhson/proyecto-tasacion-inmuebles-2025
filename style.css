@@ -1,0 +1,105 @@
+/* 🎨 Estilos generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* 📌 Contenedor principal */
+#app, #gate {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Títulos */
+h1, h2 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+/* 📝 Formularios */
+label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+/* 🔘 Botones */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #357ABD;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* 🛑 Mensajes */
+#gateMsg {
+  color: #e74c3c;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* 💰 Resultados */
+#result {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #2c3e50;
+}
+
+#range {
+  text-align: center;
+  font-size: 1rem;
+  color: #27ae60;
+  margin-top: 8px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 500px) {
+  #app, #gate {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+}
