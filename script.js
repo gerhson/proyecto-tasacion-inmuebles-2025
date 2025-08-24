@@ -595,9 +595,8 @@ const DATA = {
 // CLAVE GLOBAL
 // ===============================
 const CLAVE_GLOBAL = "12345";
-
 // ===============================
-// ELEMENTOS DEL DOM
+// ELEMENTOS
 // ===============================
 const gate = document.getElementById('gate');
 const app = document.getElementById('app');
@@ -605,9 +604,12 @@ const gateMsg = document.getElementById('gateMsg');
 const btnLogin = document.getElementById('btnLogin');
 const logout = document.getElementById('logout');
 
+// ===============================
+// LOGIN Y LOGOUT
+// ===============================
 btnLogin.onclick = () => {
   const inputClave = document.getElementById('clave').value;
-  if (inputClave === CLAVE_GLOBAL) {
+  if(inputClave === CLAVE_GLOBAL){
     gate.style.display = 'none';
     app.style.display = 'block';
     gateMsg.textContent = "";
@@ -623,19 +625,47 @@ logout.onclick = () => {
 };
 
 // ===============================
-// CARGAR DISTRITOS Y ZONAS
+// FACTORES DE TASACION
+// ===============================
+const FACTORES_TASACION = {
+  antiguedad: { depreciacionAnual: 0.01, depreciacionMaxima: 0.30, premiumNuevo:0.05 },
+  dormitorios: { base:2, incrementoPorDormitorio:0.08, decrementoPorDefecto:0.12, maximoIncremento:0.25 },
+  banos: { base:2, incrementoPorBano:0.06, decrementoPorDefecto:0.15, maximoIncremento:0.18 },
+  areaLibre: { departamento:0.25, casa:0.40, terreno:0.90 },
+  tipoInmueble: { departamento:1.0, casa:1.12, terreno:0.80, oficina:0.95, local:0.85 },
+  eficienciaEnergetica: { A:1.10, B:1.05, C:1.00, D:0.95, E:0.90, F:0.85 },
+  estadoConservacion: { excelente:1.05, bueno:1.00, regular:0.90, remodelar:0.75 }
+};
+
+// ===============================
+// FUNCION CALCULO
+// ===============================
+function calcular(){
+  const distrito = document.getElementById('distrito').value;
+  const zona = document.getElementById('zona').value;
+  const tipo = document.getElementById('tipo').value;
+
+  if(!distrito || !zona || !tipo){
+    alert("Selecciona tipo, distrito y zona");
+    return;
+  }
+
+  const valorBase = DATA[distrito].zones[zona];
+  const factorTipo = FACTORES_TASACION.tipoInmueble[tipo.toLowerCase()] || 1;
+  const resultado = valorBase * factorTipo;
+
+  document.getElementById('result').textContent = `Valor estimado: S/. ${resultado.toLocaleString()}`;
+}
+
+// ===============================
+// CARGA DE DISTRITOS Y ZONAS
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
   const distritoSel = document.getElementById("distrito");
   const zonaSel = document.getElementById("zona");
-  const tipoSel = document.getElementById("tipo");
   const form = document.getElementById("calc");
 
-  // Limpiar y agregar opción inicial
-  distritoSel.innerHTML = '<option value="">Selecciona un distrito</option>';
-  zonaSel.innerHTML = '<option value="">Selecciona una zona</option>';
-
-  // Cargar distritos
+  // Cargar distritos una sola vez
   Object.keys(DATA).forEach(distrito => {
     const option = document.createElement("option");
     option.value = distrito;
@@ -643,31 +673,27 @@ document.addEventListener("DOMContentLoaded", () => {
     distritoSel.appendChild(option);
   });
 
-  // Actualizar zonas al seleccionar distrito
+  // Actualizar zonas según distrito seleccionado
   distritoSel.addEventListener("change", () => {
-    const distrito = distritoSel.value;
     zonaSel.innerHTML = '<option value="">Selecciona una zona</option>';
-    if (DATA[distrito]?.zones) {
-      Object.keys(DATA[distrito].zones).forEach(zone => {
+    const distrito = distritoSel.value;
+    if(DATA[distrito]?.zones){
+      Object.keys(DATA[distrito].zones).forEach(zona => {
         const option = document.createElement("option");
-        option.value = zone;
-        option.textContent = zone;
+        option.value = zona;
+        option.textContent = zona;
         zonaSel.appendChild(option);
       });
     }
   });
 
-  // Actualizar campos según tipo de inmueble (opcional)
-  tipoSel.addEventListener("change", () => {
-    // tu lógica aquí
-  });
-
-  // Formulario
+  // Cálculo al enviar formulario
   form.addEventListener("submit", e => {
     e.preventDefault();
-    calcular(); // tu función calcular
+    calcular();
   });
 });
+
 
 
 
